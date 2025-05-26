@@ -1,9 +1,14 @@
-var http = require('http');
-var fs = require('fs');
-http.createServer(function (req, res) {
-  fs.readFile('demofile1.html', function(err, data) {
-    res.writeHead(200, {'Content-Type': 'text/html'});
-    res.write(data);
-    return res.end();
-  });
-}).listen(8080);
+const EventEmitter = require('events');
+
+const emitter = new EventEmitter();
+
+// Listen for the event
+emitter.on('bellRing', () => {
+  console.log('We Need to run ');
+});
+
+setTimeout(()=>{
+  emitter.emit('bellRing');
+
+},2000)
+// Raise the event
